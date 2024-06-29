@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.view.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree/field[@name='qty_to_invoice']" position="before">
+                <field name="is_rental_product"/>
+                <field name="duration_value" invisible="not is_rental_product"/>
+                <field name="duration_id" invisible="not is_rental_product"/>
+                <field name="valid_from" invisible="not is_rental_product"/>
+                <field name="valid_to" invisible="not is_rental_product"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree/field[@name='qty_to_invoice']" position="after">
+                <field name="qty_returned" invisible="not is_rental_product"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain">[('is_rental_order', '!=', True)]</field>
+    </record>
+
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="domain">[('is_rental_order', '!=', True),('state', 'not in', ('draft', 'sent', 'cancel'))]</field>
+    </record>
+
+    <record id="action_rental_orders" model="ir.actions.act_window">
+        <field name="name">Rental Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="context">{}</field>
+        <field name="domain">[('is_rental_order', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p><p>
+                Once the quotation is confirmed, it becomes a sales order.<br/> You will be able to create an invoice and collect the payment.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="rental_order_menu_root"
+        name="Rental"
+        web_icon="sale_management,static/description/icon.png"
+        sequence="35">
+
+        <menuitem id="rental_order_menu"
+            name="Rental Orders"
+            sequence="10">
+
+            <menuitem id="menu_rental_order"
+                action="action_rental_orders"
+                groups="furniture_renting.group_rental_user"
+                sequence="10"/>
+        </menuitem>
+    </menuitem>
+</odoo>

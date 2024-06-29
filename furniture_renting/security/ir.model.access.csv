@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_furniture_renting_furniture_renting,furniture_renting.furniture_renting,model_furniture_renting_furniture_renting,base.group_user,1,1,1,1
+access_rental_duration,furniture_renting.rental.duration,model_rental_duration,,1,1,1,1
+access_product_rental_price,furniture_renting.product.rental.price,model_product_rental_price,,1,1,1,1

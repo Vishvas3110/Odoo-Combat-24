@@ -1,30 +1,28 @@
+<?xml version="1.0"?>
 <odoo>
-    <data>
-<!--
-          <record id="object0" model="furniture_renting.furniture_renting">
-            <field name="name">Object 0</field>
-            <field name="value">0</field>
-          </record>
+    <data noupdate="1">
 
-          <record id="object1" model="furniture_renting.furniture_renting">
-            <field name="name">Object 1</field>
-            <field name="value">10</field>
-          </record>
+        <record id="duration_hours" model="rental.duration">
+            <field name="name">Hours</field>
+            <field name="code">hrs</field>
+            <field name="value">1</field>
+        </record>
 
-          <record id="object2" model="furniture_renting.furniture_renting">
-            <field name="name">Object 2</field>
-            <field name="value">20</field>
-          </record>
+        <record id="duration_day" model="rental.duration">
+            <field name="name">Day</field>
+            <field name="code">day</field>
+            <field name="value">1</field>
+        </record>
 
-          <record id="object3" model="furniture_renting.furniture_renting">
-            <field name="name">Object 3</field>
-            <field name="value">30</field>
-          </record>
-
-          <record id="object4" model="furniture_renting.furniture_renting">
-            <field name="name">Object 4</field>
-            <field name="value">40</field>
-          </record>
--->
+        <record id="duration_weekly" model="rental.duration">
+            <field name="name">Weekly</field>
+            <field name="code">weekly</field>
+            <field name="value">1</field>
+        </record>
+        <record id="duration_monthly" model="rental.duration">
+            <field name="name">Monthly</field>
+            <field name="code">monthly</field>
+            <field name="value">1</field>
+        </record>
     </data>
 </odoo>
